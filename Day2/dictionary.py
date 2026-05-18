@@ -4,8 +4,11 @@ data = {
 }
 
 print(data.keys())
+print(type(data.keys()))
 print(data.values())
+print(type(data.values()))
 print(data.items())
+print(type(data.items()))
 
 print(data)
 data.update({"DOB": 2000})
