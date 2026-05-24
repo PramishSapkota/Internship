@@ -1,12 +1,10 @@
+import csv
+
+FILE_NAME = "Day6/user_record_OOP.csv"
+fields = ["username", "password", "name", "balance"]
+
 class User:
     # Class variable to store all users
-    
-    # users_database = {
-    # "alice": {"passcode": "1234", "username": "Alice","balance": 1000},
-    # "bob": {"passcode": "5678","username": "Bob", "balance": 500},
-    # "charlie": {"passcode": "9101","username": "Charlie","balance": 2000}
-    # }
-
     users_database = {}
 
     def __init__(self, name, username, password, balance=0):
@@ -16,6 +14,41 @@ class User:
         self.__balance = balance
         # Add this user to the class database
         User.users_database[username] = self
+
+    @classmethod
+    def save_users(cls):
+
+        with open(FILE_NAME, "w", newline="") as file:
+
+            writer = csv.DictWriter(file, fieldnames=fields)
+            writer.writeheader()
+
+            for user in cls.users_database.values():
+
+                writer.writerow({
+                    "name": user.name,
+                    "username": user.username,
+                    "password": user._User__password,
+                    "balance": user.get_balance()
+                })
+
+    @classmethod
+    def load_users(cls):
+
+        try:
+            with open(FILE_NAME, "r", newline="") as file:
+                reader = csv.DictReader(file)
+
+                for row in reader:
+                    User(
+                        row["name"],
+                        row["username"],
+                        row["password"],
+                        int(row["balance"])
+                    )
+
+        except FileNotFoundError:
+            pass
 
     # password validation
     def check_password(self, password):
@@ -40,7 +73,7 @@ class User:
         return username in cls.users_database
 
     def __repr__(self):
-        return f'Username={self.name}, username={self.username}, balance={self.get_balance()})'
+        return f'\name={self.name}, username={self.username}, balance={self.get_balance()})'
     
     # def __str__(self):
     #     users = []
@@ -74,7 +107,7 @@ class BankAccount(User):
         
         # Update in the class database
         User.users_database[self.username] = self
-        
+        User.save_users()
         print(f"Deposited Rs.{amount}")
         print(f"New Balance = Rs.{new_balance}")
     
@@ -94,7 +127,7 @@ class BankAccount(User):
         
         # Update in the class database
         User.users_database[self.username] = self
-        
+        User.save_users()
         print(f"Withdrawn Rs.{amount}")
         print(f"Remaining Balance = Rs.{new_balance}")
     
@@ -109,19 +142,18 @@ class ATMApp:
     
     # signup fn    
     def signup(self):
-        print("\n===== SIGNUP =====")  
-         
-        while True: 
+        print("\n===== SIGNUP =====")
+        
+        while True:                                    
             name = input("Enter name: ")
             if name == "":
                 print("Name cannot be empty")
                 continue
 
-            username = input("Enter username: ")
+            username = input("Enter username: ")            
             if username == "":
                 print("Username cannot be empty")
                 continue
-            
             if not User.username_exists(username):
                 break      # username is unique, proceed
             print("Username already taken. Try again.")
@@ -131,6 +163,7 @@ class ATMApp:
             if password == "":
                 print("Password cannot be empty")
                 continue
+
             re = input("Re-Enter password: ")
             if password == re:
                 break
@@ -140,6 +173,7 @@ class ATMApp:
         
         balance = int(input("Enter initial deposit: "))
         account = BankAccount(username, password, name, balance)
+        User.save_users()
         print("Account created successfully.")
     
     # ---------------- LOGIN ----------------
@@ -240,10 +274,13 @@ class ATMApp:
                 case _:
                     print("Invalid choice.")
 
-# Seed initial users
-BankAccount("alice", "1234", "Alice", 1000)
-BankAccount("bob", "5678", "Bob", 500)
-BankAccount("charlie", "9101", "Charlie", 2000)
+# initial data
+# if not User.users_database:
+#     BankAccount("alice", "1234", "Alice", 1000)
+#     BankAccount("bob", "5678", "Bob", 500)
+#     BankAccount("charlie", "9101", "Charlie", 2000)
+
+User.load_users()
 
 app = ATMApp()
 app.run()
