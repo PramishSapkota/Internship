@@ -55,11 +55,11 @@ class BankAccount(User):
     
     def __init__(self, username, password, name=None, balance=0):
         # If user exists, retrieve their data
-        existing_user = User.get_user(username)
-        if existing_user:
-            # super().__init__(name or existing_user.name, username, password, existing_user.get_balance())
-            super().__init__(existing_user.name, username, password, existing_user.get_balance())
-        else:
+        # existing_user = User.get_user(username)
+        # if existing_user:
+        #     # super().__init__(name or existing_user.name, username, password, existing_user.get_balance())
+        #     super().__init__(existing_user.name, username, password, existing_user.get_balance())
+        # else:
             super().__init__(name, username, password, balance)
     
     def deposit(self):
@@ -110,13 +110,18 @@ class ATMApp:
     # signup fn    
     def signup(self):
         print("\n===== SIGNUP =====")  
-         
+
         while True: 
+            
             name = input("Enter name: ")
             if name == "":
                 print("Name cannot be empty")
                 continue
 
+            else:
+                break
+
+        while 1:
             username = input("Enter username: ")
             if username == "":
                 print("Username cannot be empty")

@@ -80,7 +80,7 @@ def add_user():
         if password == "":
             print("Password cannot be empty")
             continue
-        
+
         re_password = input("Re-enter password: ")
 
         if password != re_password:
@@ -102,7 +102,13 @@ def add_user():
             continue
         break
 
-    name = input("Enter your name: ")
+    while 1:
+        name = input("Enter your name: ")
+        if name == "":
+            print("Name cannot be empty")
+            continue
+        else:
+            break
 
     with open(FILE_NAME, "a", newline='') as file:
         writer = csv.DictWriter(file, fieldnames=fields)

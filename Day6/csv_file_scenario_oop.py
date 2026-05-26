@@ -143,13 +143,17 @@ class ATMApp:
     # signup fn    
     def signup(self):
         print("\n===== SIGNUP =====")
-        
-        while True:                                    
+
+        while True: 
             name = input("Enter name: ")
             if name == "":
                 print("Name cannot be empty")
                 continue
+            
+            else:
+                break
 
+        while 1:
             username = input("Enter username: ")            
             if username == "":
                 print("Username cannot be empty")
