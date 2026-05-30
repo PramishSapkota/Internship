@@ -1,0 +1,8 @@
+AssignmentID,MemberID,BookID,IssueDate,DueDate,Returned
+A_0,M_0,B_0,2026-05-01,2026-05-15,True
+A_1,M_1,B_1,2026-05-10,2026-05-24,False
+A_2,M_2,B_2,2026-05-15,2026-05-29,False
+A_3,M_0,B_3,2026-04-01,2026-04-15,True
+A_4,M_3,B_4,2026-05-20,2026-06-03,False
+A_5,M_3,B_2,2025-05-20,2025-06-03,False
+A_6,M_0,B_2,2003-1-1,2003-01-15,False

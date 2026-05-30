@@ -12,19 +12,23 @@ Day 1 of my internship experience, focusing on basic and  foundational concepts 
 
 - Next i learned about AST, the python code is firstly tokenized then it is parsed by a parser to check for syntax correctness after that an AST is constructed, AST can detect errors that the parser cannot detect. Finally if all is well the bytecode is compiled.
 
--Python exposes AST using built in ast module.
+  - Python exposes AST using built in ast module.
 
 ## Notes
+```
 python -m py_compile filename.py
+```
 
 only makes the '.cpython' file while  
 
+```
 python -m filename
+```
 
 makes and execute the '.cpython' file.
 
 ## Resources
-- (https://youtu.be/AisW8ZhqUuc)
+- [Yt vid](https://youtu.be/AisW8ZhqUuc)
 - [AST](https://youtu.be/wINY109MG10)
 
 ---
