@@ -1,4 +1,4 @@
-# Simple Library Management System Simulation
+# Simple Library Management System
 import csv
 import os
 from abc import ABC, abstractmethod
@@ -8,9 +8,9 @@ book_fields = ['BookID', 'Title', 'Author', 'Quantity']
 members_fields = ['MemberID', 'Name', 'Contact']
 assignment_fields = ['AssignmentID', 'MemberID', 'BookID', 'IssueDate', 'DueDate', 'Returned']
 
-Book_file_name = 'Mini_project/data/books.csv'
-Member_file_name = 'Mini_project/data/members.csv'
-Assignment_file_name = 'Mini_project/data/assignments.csv'
+Book_file_name = 'Week_3(LMS)/csv_records/books.csv'
+Member_file_name = 'Week_3(LMS)/csv_records/members.csv'
+Assignment_file_name = 'Week_3(LMS)/csv_records/assignments.csv'
 
 # custom error classes should be written in 1st
 class LibraryError(Exception): pass
@@ -23,7 +23,7 @@ class AssignmentNotFoundError(LibraryError): pass
 class BookUnavailableError(LibraryError): pass
 
 class Book:
-    def __init__(self,  title:str, author:str, quantity:int, book_id =None):
+    def __init__(self,  title:str, author:str, quantity:int, book_id:str =None):
         self._book_id = book_id if book_id else self.set_ID()
         self.title = title
         self.author = author
@@ -329,6 +329,15 @@ class AssignmentManager(CSV_Handling):
         """Full assignment history (returned + active) for one member."""
         return [a for a in self.all() if a.member_ID == str(member_id)]
 
+    def has_active_assignment(self, member_id: str, book_id: str) -> bool:
+        """Check if this member already has this specific book unreturned."""
+        for a in self.all():
+            if a.member_ID == str(member_id) and a.book_ID == str(book_id) and a.returned == "False":
+                return True
+           
+        return False #returns None which python treats as False if not specified 
+       
+
 class LibraryService:
     def __init__(self):
         self.books = BookManager()
@@ -537,6 +546,10 @@ class LibraryService:
                 raise BookNotFoundError(f"Book '{book_id}' not found.")
             if not book.is_available:
                 raise BookUnavailableError(f"'{book.title}' has no copies available right now.")
+            
+            if self.assignments.has_active_assignment(member_id, book_id):
+                raise LibraryError(f"'{member.name}' already has '{book.title}' and hasn't returned it yet."
+            )
             
         except Exception as e:
             print(f" Error: {e}")

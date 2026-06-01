@@ -39,6 +39,13 @@ This is a simple simulation of  Library Management System using python
 
 - Learned that we can print dashes or other symbols as many times we want using **f"{'--'\*25}"** instead of manually
 
+- If a boolean function only returns *True* if a condition is met and *False* isn't returned explicitly. The function returns *None* instead of False. Python treats None as False. 
+
+  the values that are treated as false are:
+  <!-- ``` -->
+  **False, None, numeric zero of all types, and empty strings and containers (including strings, tuples, lists, dictionaries, sets and frozensets)**
+  <!-- ``` -->
+
 
 
 ---
