@@ -37,7 +37,7 @@ a.insert(1,3)
 print(a)
 
 b=["a","b",'c']
-a.extend(b) # unpacks b and appends to b
+a.extend(b) # unpacks b and appends to a
 print(a)
 
 # appending dictionRY
