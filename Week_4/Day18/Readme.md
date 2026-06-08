@@ -1,7 +1,7 @@
-# Day 17 - Internship Journey
+# Day 18 - Internship Journey
 
 ## Overview
-Day 17 of my internship, focused on fast api and pydantic
+Day 18 of my internship, focused on fast api and pydantic
 
 ## Topics Covered
 - Pydantic
