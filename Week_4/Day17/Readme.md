@@ -20,4 +20,4 @@ Day 17 of my internship, focused on basics of fast api
 
 ---
 
-**Date:** Apr 2, 2026
+**Date:** Jun 2, 2026

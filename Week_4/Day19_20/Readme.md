@@ -14,4 +14,4 @@ Day 19 and 20 of my internship, focused on numpy
 
 ---
 
-**Date:** Apr 4 and 5, 2026
+**Date:** Jun 4 and 5, 2026

@@ -18,4 +18,4 @@ Day 18 of my internship, focused on fast api and pydantic
 
 ---
 
-**Date:** Apr 3, 2026
+**Date:** Jun 3, 2026
