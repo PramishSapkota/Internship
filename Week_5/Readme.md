@@ -18,7 +18,7 @@ Week 5 of my internship experience, focusing on basic and  foundational concepts
 
     - **Multi-threading**: For I/O bound task. Waiting for input, fetching requests from server or APIs.
 
-    - **async**: Same as multithreading but if the I/O tasks are in large quantity. Eg. for 10-20 or even 100 use threading but for greater than that use async. For larger tasks async is faster bcz the cost of multithreading will outweigh its benefit while async is lightweight subprocess. Basically for lots of waiting task
+    - **async**: Same as multithreading but if the I/O tasks are in large quantity. Eg. for 10-20 or even 100 use threading but for greater than that use async. For larger tasks async is faster bcz the cost of multithreading will outweigh its benefit while async is lightweight routine. Basically for lots of waiting task
 
 - GIL
     It was introduced bcz python used garbage collection to handle automatic memory allocation and deallocation. 
@@ -28,7 +28,8 @@ Week 5 of my internship experience, focusing on basic and  foundational concepts
     2. **Garbage Collection**: Garbage collection is a memory management technique used in programming languages to automatically reclaim memory that is no longer accessible or in use by the application. This is able to detect and clean up objects involved in reference cycles.
 
 - **matplotlib.pyplot & seaborn:**
-    Seaborn is basically just a wrapper around matplotlib. This makes the diagram look more polished.
+
+    - Seaborn is basically just a wrapper around matplotlib. This makes the diagram look more polished.
 
     - Learned how to plot bar graph(horizontal and vertical), pie chart, histogram, scatter plot, boxplot. 
 

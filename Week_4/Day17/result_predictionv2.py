@@ -5,10 +5,17 @@ app = FastAPI(title="Predicting student result",
     description="Dictionary stores real values not objects",
     version="2",)
 
-database = {}
+database = {0:{
+                "id": 0,
+                "name": "Bipin",
+                "daily_study_hour":10,
+                "attendance_percent":90,
+                "previous_marks": 92,
+                } 
+            }
 
 class StudentRecord(BaseModel):
-    id:int = 0
+    id:int = 1
     name:str = "Ram"
     daily_study_hour:int = 8
     attendance_percent:float = 75
@@ -20,14 +27,20 @@ def homepage():
 
 @app.post("/student")
 def add_details(record:StudentRecord): 
-    database[record.id]  = record 
+    database[record.id]  = {
+                            "id":record.id,
+                            "name": record.name,
+                            "daily_study_hour":record.daily_study_hour,
+                            "attendance_percent":record.attendance_percent,
+                            "previous_marks": record.previous_marks,
+                           } 
     return {
     "message": "Student added successfully",
     "student_id": record.id
 }
 
 
-@app.post("/details/{student_id}")
+@app.get("/details/{student_id}")
 def get_details(student_id:int = 0):
     if student_id not in database:
         raise HTTPException(

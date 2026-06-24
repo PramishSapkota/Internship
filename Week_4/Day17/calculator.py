@@ -18,7 +18,7 @@ def give_values_to_add(value:Values):
 @app.get("/add")
 # http://127.0.0.1:8000/add?first=0&second=0
 def addition(first: float = 0, second: float = 0):
-    return {"Added value": first + second    }
+    return {"Added value": first + second}
 
 @app.post("/sub")
 def give_values_to_subtract(value:Values):

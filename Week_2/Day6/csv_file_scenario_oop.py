@@ -1,6 +1,6 @@
 import csv
 
-FILE_NAME = "Day6/user_record_OOP.csv"
+FILE_NAME = "Week_2/Day6/csvs/user_record_OOP.csv"
 fields = ["username", "password", "name", "balance"]
 
 class User:
